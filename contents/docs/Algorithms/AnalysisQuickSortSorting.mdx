@@ -1,0 +1,149 @@
+---
+title: Analysis QuickSort Sorting Algorithm
+description: The QuickSort algorithm is a highly efficient, comparison-based sorting algorithm that works by partitioning an array into smaller sub-arrays based on a pivot element, then recursively sorting them. Known for its average-case time complexity of O(n log n), it’s widely used due to its speed and efficiency in handling large datasets.
+---
+
+# Overview:
+In our last session, we explored the QuickSort algorithm, employing divide-and-conquer and partitioning techniques to achieve sorting. We also implemented these methods to sort an array using QuickSort. Today, we will analyze the QuickSort algorithm based on the criteria we previously defined.
+
+## 1. Time Complexity:
+
+### Worst Case:
+The worst-case scenario for QuickSort occurs when the array is already sorted. To illustrate, consider a sorted array of length 5. This scenario reaches the worst-case time complexity because each partitioning step results in the most unbalanced splits possible.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/161.svg",
+    light: "/images/161.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+In the first step, you choose 1 as the pivot and apply a partition on the whole array. Since 1 is already at its correct position, we apply quicksort on the rest of the subarrays.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/162.svg",
+    light: "/images/162.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Next, the pivot is element 2, and when applied partition, we found that there is no element less than 2 in the subarray; hence, the pivot remains there itself. We further apply quicksort on the only subarray that is to the right.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/163.svg",
+    light: "/images/163.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Now, the pivot is 4, and since that is already at its correct position, applying partition did make no change. We move ahead.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/164.svg",
+    light: "/images/164.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Now, the pivot is 8, and even that is at its correct position; hence things remain unchanged, and there is just one subarray with a single element left. But since any array with a single element is always sorted, we mark the element 12 sorted as well. And hence final sorted array becomes,
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/165.svg",
+    light: "/images/165.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+If you calculate carefully, for an array of size 5, we had to partition the subarray 4 times. That is, for an array of size **\( n \)**, there would be **\( (n-1) \)** partitions. During each partition, index variables, **\( i \)** and **\( j \)**, run from either direction towards each other until they actually become equal or cross each other. Additionally, some swapping operations occur in between. These operations count to some linear function of **\( n \)**, contributing **\( O(n) \)** to the runtime complexity. Since there are a total of **\( (n-1) \)** partitions, the total runtime complexity becomes **\( n(n-1) \)**, which simplifies to **\( O(n^2) \)**. This represents worst-case complexity.
+
+
+### Best Case:
+
+The condition when algorithm performs in its best possible time complexity is when array gets divided into two almost equal subarrays at each partition. Below mentioned tree defines the state of best-case when we apply quicksort on an array of 16 elements, of which each newly made subarray is almost half of its parent array.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/166.svg",
+    light: "/images/166.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+No. partitions were different at each level of the tree. If we count starting from the top, the top-level had one partition on an array of length **(n=16)**, the second level had **2** partitions on arrays of length **n/2**, then the third level had 4 partitions on arrays of length **n/4**… and so on.
+
+For the above array of length **16**, the calculation goes like the one below.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/167.svg",
+    light: "/images/167.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Here, **T(x)** is the time taken during the partition of the array with **x** elements. And as we know, the partition takes a linear function time, and we can assume **T(x)** to be equal to **x**; hence the total time complexity becomes,
+
+**Total time = 1(n) + 2(n/2) +4(n/4) + ..........+ until the height of the tree(h) Total time = n*h**
+
+Now, can you decide what h is? H is the height of the tree, and the height of the tree, if you remember, is log2(n), where n is the size of the given array. In the above example, h = 4, since log2(16) equals 4. Hence the time complexity of the algorithm in its best case is **O(nlogn)**.
+
+> Note: The average time complexity remains O(nlogn). Calculations have been avoided here due to their complexity.
+
+## 2. Stability:
+The QuickSort algorithm is not stable. It does swaps of all kinds and hence loses its stability. An example is illustrated below.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/168.svg",
+    light: "/images/168.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+When we apply the partition on the above array with the first element as the pivot, our array becomes
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/169.svg",
+    light: "/images/169.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+And the two 2s get their order reversed. Hence quick sort is not stable.
+
+3. Quicksort algorithm is an in-place algorithm. It doesn't consume any extra space in the memory. It does all kinds of operations in the same array itself.
+
+4. There is no hard and fast rule to choose only the first element as the pivot; rather, you can have any random element as its pivot using the rand() function and that you wouldn’t believe actually reduces the algorithm's complexity.

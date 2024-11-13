@@ -83,6 +83,7 @@ export const ROUTES = [
         { title: "Selection Sort Algorithm", href: "/SelectionSortAlgorithm" },
         { title: "Selection Sort Program", href: "/SelectionSortProgram" },
         { title: "QuickSort Algorithm", href: "/QuickSortAlgorithm" },
+        { title: "Analysis QuickSort Sorting Algorithm", href: "/AnalysisQuickSortSorting" },
       ],
     },
 ];
