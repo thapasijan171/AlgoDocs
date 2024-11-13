@@ -1,0 +1,141 @@
+---
+title: Merge Sort Algorithm
+description: MergeSort is a highly efficient, comparison-based sorting algorithm that employs the divide-and-conquer strategy. By recursively splitting the array into halves, sorting, and then merging them back together, it achieves a consistent time complexity of O(n log n).
+---
+
+# Overview:
+Before we proceed, I would like to explain why we call it the merge sort algorithm. In this algorithm, we divide the arrays into subarrays and subarrays into more subarrays until the size of each subarray becomes 1. Since arrays with a single element are always considered sorted, this is where we merge. Merging two sorted subarrays creates another sorted subarray. I’ll show you first how merging two sorted subarrays works.
+
+## Merging Procedure:
+Suppose we have two sorted arrays, A and B, of sizes 5 and 4, respectively.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/170.svg",
+    light: "/images/170.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+1. And we apply merging on them. Then the first job would be to create another array C with size being the sum of both the raw arrays’ sizes. Here the sizes of A and B are 5 and 4, respectively. So, the size of array C would be 9.
+2. Now, we maintain three index variables i, j, and k. i looks after the first element in array A, j looks after the first element in array B, and k looks after the position in array C to place the next element in.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/171.svg",
+    light: "/images/171.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+3. Initially, all i, j, and k are equal to 0.
+4. Now, we compare the elements at index i of array A and index j of array B and see which one is smaller. Fill in the smaller element at index k of array C and increment k by 1. Also, increment the index variable of the array we fetched the smaller element from.
+5. Here, A[i] is greater than B[j]. Hence we fill C[k] with B[j] and increase k and j by 1.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/172.svg",
+    light: "/images/172.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+6. We continue doing step 5 until one of the arrays, A or B, gets empty.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/173.svg",
+    light: "/images/173.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Here, array B inserted all its elements in the merged array C. Since we are only left with the elements of element A, we simply put them in the merged array as they are. This will result in our final merged array C.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/174.svg",
+    light: "/images/174.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+I hope you understood the merging procedure. This is an important concept in learning the merge sort algorithm. Be sure not to skip this. Even the programming part of the merge procedure is not that tough. You just follow these steps:
+
+1. Take both the arrays and their sizes to be merged as the parameters of the merge function. By summing the sizes of the two arrays, we can create one larger array.
+2. Create three index variables *i*,*j* & *k*. And initialize all of them with 0.
+3. And then run a while loop with the condition that both the index variables i and j don't exceed their respective array limits.
+4. Now, at each run, see if A[i] is smaller than B[j], if yes, make C[k] = A[i] and increase both i and k by 1, else C[k] = B[j] and both j and k are incremented by 1.
+5. And when the loop finishes, either array A or B or both get finished. And now you run two while loops for each array A and B, and insert all the remaining elements as they are in the array C. And you are done merging.
+
+> The pseudocode for the above procedure has been attached below.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/175.svg",
+    light: "/images/175.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Now, this would quite not be our situation when sorting an array using the merge sort. We wouldn’t have two different arrays A and B, rather a single array having two sorted subarrays. Now, I’d show you how to merge two sorted subarrays of a single array in the array itself.
+
+Suppose there is an array A of 5 elements and contains two sorted subarrays of length 2 and 3 in itself.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/176.svg",
+    light: "/images/176.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+To merge both the sorted subarrays and produce a sorted array of length 5, we will create an auxiliary array B of size 5. Now the process would be more or less the same, and the only change we would need to make is to consider the first index of the first subarray as low and the last index of the second subarray as *high*. And mark the index prior to the first index of the second subarray as *mid*.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/177.svg",
+    light: "/images/177.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Previously we had index variables i, j, and k initialised with 0 of their respective arrays. But here, i gets initialised with low, j gets initialised with mid+1, and k gets initialised with low only. And similar to what we did earlier, i runs from low to mid, j runs from mid+1 to high, and until and unless they both get all their elements merged, we continue filling elements in array B.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/178.svg",
+    light: "/images/178.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+After all the elements get filled in array C, we revert back to our original array A and fill the sorted elements again from low to high, making our array merge-sorted.
+

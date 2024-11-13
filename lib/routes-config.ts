@@ -84,6 +84,7 @@ export const ROUTES = [
         { title: "Selection Sort Program", href: "/SelectionSortProgram" },
         { title: "QuickSort Algorithm", href: "/QuickSortAlgorithm" },
         { title: "Analysis QuickSort Sorting Algorithm", href: "/AnalysisQuickSortSorting" },
+        { title: "MergeSort Sorting Algorithm", href: "/MergeSortSortingAlgorithm" },
       ],
     },
 ];
