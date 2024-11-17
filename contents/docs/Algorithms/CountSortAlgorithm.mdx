@@ -1,0 +1,86 @@
+---
+title: Count Sort Algorithm
+---
+
+Suppose we are given an array of integers and asked to sort them using any sorting algorithm of our choice, then it is not hard to generate the resultant array, which is just the sorted form of the given array. Still, the method you choose to reach the result matters the most. Count Sort is one of the fastest methods of all. We will discuss the constraints later that would make you wonder why we don't use just this. We will do all the analysis, but before that, let's see what count sort is. The below figure shows the array given.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/181.svg",
+    light: "/images/181.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+1. The first thing the algorithm will ask you to do is find the largest element among all elements in the array and to store it in some integer variable max. Then create a count array of size max+1. This array would count the no. of occurrences of some number in the given array. We'll have to initialize all count array elements with 0 for that to work.
+2. Once the count array is initialized, then we go through the given array and add 1 to that element value in the count array. Assigning a fixed size of count array as the maximum element in the array makes sure that all the elements inside the array would be having their index inside the count array. As we move through the whole array we will have the count for each element inside the array.
+3. Now iterate through the count array and search for the non-zero elements. The moment you find an index having some value other than zero, fill in the sorted array the index of the non-zero element till it becomes zero by decrementing it by 1 every time you fill it into the resultant array. And then move further. You are creating a sorted array. Now, let us take the one we have above as a count and sort it by way of a count sort algorithm.
+
+First of all, find the maximum element in the array. Here, it is 9. So, we’ll create a count array of size 10 and initialize every element by 0.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/182.svg",
+    light: "/images/182.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Now, let’s iterate through the given array and count the no. of occurrences of each number less than equal to the maximum element.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/183.svg",
+    light: "/images/183.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+{/* TODO: here edit svg */}
+We would iterate through the count array and fill the unsorted array with the index we encounter having a non-zero number of occurrences.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/187.svg",
+    light: "/images/187.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+Now since there are zero numbers of zeros in the given array, we move further to index 1.
+
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/188.svg",
+    light: "/images/188.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
+
+And following a similar procedure for all the elements in the count array, we reach our sorted array in no time.
+
+<AdaptiveThemeImage
+  src={{
+    dark: "/images/185.svg",
+    light: "/images/185.svg",
+  }}
+  className="mx-auto pb-4 pt-0"
+  width={770}
+  height={450}
+  alt="example"
+/>
