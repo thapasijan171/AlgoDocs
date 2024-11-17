@@ -1,0 +1,124 @@
+---
+title: Count Sort Algorithm Program
+---
+
+> Understanding the code snippet below:
+
+1. Before we proceed with the actual function related to count sort, let’s copy the printArray and the array declaration part from the previous lecture in our current program as well. This saves us time and helps us a lot to see the contents of the array before and after the sorting. I have attached the snippet for printArray 
+
+```c 
+void printArray(int* A, int n){
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
+```
+
+> Code Snippet 1: Creating the printArray function
+
+2. Now, to proceed with the countSort function, we would need a maximum function, which would return the maximum of all elements in the array given.
+
+**Creating the maximum function:**
+
+3. Create an integer function maximum and pass the array and its length as its parameters. Create an integer variable *max* to store the maximum element. Initialize this *max* with the least possible number we have, which is To use this identifier; you must include `<limits.h>`. Now iterate through the whole array using a for loop, and if you find an element greater than the current *max*, update *max*. At the end, return *max*.
+
+```c
+int maximum(int A[], int n){
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++)
+    {
+        if (max < A[i]){
+            max = A[i];
+        }
+    }
+    return max; 
+}
+```
+
+> Code Snippet 2: Creating the maximum function
+
+**Creating the countSort function:**
+
+4. Create a void function *countSort* and pass the array and its length as its parameters. Create an integer variable *max* to store the maximum element which you get by calling the maximum function we made above. Next, create an integer array count and assign it memory dynamically using malloc of the size* max+1*. Don’t forget to include `<stdlib.h>` to be able to use malloc.
+
+Initialize the whole count array by simply using a for a loop.
+
+Run another for loop to iterate through the given array and increase the value of the corresponding element index in the *count* array by 1.
+
+5. Now, since the count array has been populated, create two index variables, *i* and *j*, to iterate through the count and the given array, respectively. Run a while loop until we reach the end of the count array. Inside the loop, check if the element at the current index in the count array is non-zero. If it is, insert i at the j^th index of the given array and decrement the element in the count array at ith index by 1 and simultaneously increase the value of j by 1. Repeat this until the element at the ith index becomes zero or if it is already zero, increase i by 1.
+
+The array becomes sorted once all the processes listed above are complete.
+
+```c 
+void countSort(int * A, int n){
+    int i, j;
+    // Find the maximum element in A
+    int max = maximum(A, n); 
+
+    // Create the count array
+    int* count = (int *) malloc((max+1)*sizeof(int));
+
+    // Initialize the array elements to 0
+    for (i = 0; i < max+1; i++)
+    {
+        count[i] = 0; 
+    }
+
+    // Increment the corresponding index in the count array
+    for (i = 0; i < n; i++)
+    {
+        count[A[i]] = count[A[i]] + 1; 
+    }
+
+    i =0; // counter for count array
+    j =0; // counter for given array A
+
+    while(i<= max){
+        if(count[i]>0){
+            A[j] = i;
+            count[i] = count[i] - 1;
+            j++;
+        }
+        else{
+            i++;
+        }
+    } 
+}
+```
+
+> Code Snippet 3: Creating the countSort function
+
+**Here is the whole source code:**
+
+> Code Snippet 4: Program to implement the count Sort Algorithm
+
+Let us now check if our functions work well. Consider an array A of length 7.
+
+```
+    int A[] = {9, 1, 4, 14, 4, 15, 6};
+    int n = 7;
+    printArray(A, n);
+    countSort(A, n);
+    printArray(A, n); 
+```
+
+> Code Snippet 5: Using the countSort function
+
+And the output we received was:
+
+```
+9 1 4 14 4 15 6 
+1 4 4 6 9 14 15 
+PS D:\Code>
+```
+
+> Figure 1: Output of the above program
+
+This array got sorted. That was easy for you to understand, I believe. And it was indeed as easy as pie.
+
+**Time Complexity of Count Sort:**
+
+Calculating the time complexity of the count sort algorithm is one of the easiest jobs to do. If you carefully observe the whole process, we only ran two different loops, one through the given array and one through the count array, which had the size equal to the maximum element in the given array. If we suppose the maximum element to be m, then the algorithm's time complexity becomes **O(n+m)**, and for an array of some huge size, this reduces to just **O(n)**, which is the most efficient by far algorithm. However, there is a negative point as well. The algorithm uses extra space for the count array.  And this linear complexity is reachable only at the cost of the space the count array takes.
+

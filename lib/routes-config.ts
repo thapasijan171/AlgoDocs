@@ -87,6 +87,7 @@ export const ROUTES = [
         { title: "MergeSort Sorting Algorithm", href: "/MergeSortSortingAlgorithm" },
         { title: "MergeSort Sorting Program", href: "/MergeSortProgram" },
         { title: "Count Sort Algorithm", href: "/CountSortAlgorithm" },
+        { title: "Count Sort Algorithm Program", href: "/CountSortAlgorithmProgram" },
       ],
     },
 ];
