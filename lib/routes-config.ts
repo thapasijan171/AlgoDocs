@@ -96,6 +96,7 @@ export const ROUTES = [
         items: [
           { title: "Introduction of Trees", href: "/introductionTrees" },
           { title: "What is a Binary Tree? ", href: "/BinaryTree" },
+          { title: "Types of Binary Trees", href: "/TypesBinaryTrees" },
         ],
       }
 ];
