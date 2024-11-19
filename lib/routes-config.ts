@@ -95,6 +95,7 @@ export const ROUTES = [
         href: "Trees",
         items: [
           { title: "Introduction of Trees", href: "/introductionTrees" },
+          { title: "What is a Binary Tree? ", href: "/BinaryTree" },
         ],
       }
 ];
