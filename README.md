@@ -15,10 +15,10 @@ AlgoDocs is a personal documentation project for **Data Structures** and **Algor
 
 ## Tech Stack
 
-- **Framework**: Next.js (for static site generation and dynamic content rendering)
-- **Languages**: JavaScript, TypeScript
-- **UI/UX**: TailwindCSS, Styled Components
-- **Graphics**: Diagrams made with tools like Figma and Excalidraw for clear and concise visual representations.
+- **Framework**: Next.js (for static site generation)
+- **Languages**: TypeScript
+- **UI/UX**: TailwindCSS
+- **Graphics**: Diagrams made with tools like Excalidraw for clear and concise visual representations.
 
 ## How to Use
 
@@ -39,7 +39,6 @@ Contributions are welcome! If you'd like to enhance AlgoDocs, feel free to:
 ## Planned Features
 
 - **Interactive Code Snippets**: Planned future feature where users can interact with code directly on the docs for better understanding.
-- **Video Explanations**: Upcoming video content for step-by-step explanations.
 - **Quizzes and Practice Problems**: To help test your understanding of the concepts covered.
 
 ## Give it a ⭐ on GitHub!
